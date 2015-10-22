@@ -65,5 +65,6 @@ public abstract class HelperBase {
 			driver.findElement(locator).sendKeys(text);
 		}
 	}
+	
 
 }

@@ -1,5 +1,8 @@
 package com.example.fw;
 
+import java.util.Scanner;
+import java.util.*;
+
 import org.openqa.selenium.By;
 
 import com.example.tests.ContactData;
@@ -44,5 +47,48 @@ public class ContactHelper extends HelperBase{
 	public void goToHomePage() {
 		click(By.linkText("home page"));
 	}
+	
+	
+	
+	public void selectContactByIndex(int index){
+		click(By.xpath("//table/descendant::input[@name= 'selected[]'][" + index + "]"));
+	}
+	
+	public void openContactEditPage(int index){
+		click(By.xpath("//table/descendant::img[@alt= 'Edit'][" + index + "]"));
+	}
+
+	public void deleteContact(int index){
+		selectContactByIndex(index);
+		openContactEditPage(index);
+		click(By.xpath("//form/descendant::input[@value='Delete']"));
+	}
+	
+	public int askIndex(){
+	Scanner sc = new Scanner(System.in);
+	System.out.print("Input Contact Index");
+	int askIndex = 0;
+	askIndex = sc.nextInt();
+	sc.close();
+	System.out.println(askIndex);
+	return askIndex;
+	}
+
+	public void initContactModification(int index) {
+		selectContactByIndex(index);
+		openContactEditPage(index);
+	}
+	
+	public void initContactModification1() {
+		selectContactByIndex(askIndex());
+		openContactEditPage(askIndex());
+	}
+
+
+	public void submitContactModification() {
+		click(By.xpath("//form/descendant::input[@value='Update']"));		
+	}
+	
+	
 
 }
