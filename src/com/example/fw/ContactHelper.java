@@ -64,26 +64,14 @@ public class ContactHelper extends HelperBase{
 		click(By.xpath("//form/descendant::input[@value='Delete']"));
 	}
 	
-	public int askIndex(){
-	Scanner sc = new Scanner(System.in);
-	System.out.print("Input Contact Index");
-	int askIndex = 0;
-	askIndex = sc.nextInt();
-	sc.close();
-	System.out.println(askIndex);
-	return askIndex;
-	}
+	
 
 	public void initContactModification(int index) {
 		selectContactByIndex(index);
 		openContactEditPage(index);
 	}
 	
-	public void initContactModification1() {
-		selectContactByIndex(askIndex());
-		openContactEditPage(askIndex());
-	}
-
+	
 
 	public void submitContactModification() {
 		click(By.xpath("//form/descendant::input[@value='Update']"));		
