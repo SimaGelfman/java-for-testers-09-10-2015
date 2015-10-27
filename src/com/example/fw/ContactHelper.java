@@ -59,7 +59,6 @@ public class ContactHelper extends HelperBase{
 	}
 
 	public void deleteContact(int index){
-		selectContactByIndex(index);
 		openContactEditPage(index);
 		click(By.xpath("//form/descendant::input[@value='Delete']"));
 	}
@@ -67,7 +66,6 @@ public class ContactHelper extends HelperBase{
 	
 
 	public void initContactModification(int index) {
-		selectContactByIndex(index);
 		openContactEditPage(index);
 	}
 	

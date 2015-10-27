@@ -7,7 +7,7 @@ public class ContactRemovalTests extends TestBase{
 	@Test
 	public void deleteSomeContact(){
 		app.getNavigationHelper().goToMainPage();
-		app.getContactHelper().deleteContact(1);
+		app.getContactHelper().deleteContact(4);
 		app.getContactHelper().goToHomePage();
 	}
 

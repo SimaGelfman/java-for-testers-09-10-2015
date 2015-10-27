@@ -1,5 +1,8 @@
 package com.example.tests;
 
+import java.util.List;
+
+import static org.testng.Assert.assertEquals;
 import org.testng.annotations.Test;
 
 public class GroupModifyTests extends TestBase{

@@ -1,6 +1,10 @@
 package com.example.fw;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import com.example.tests.GroupData;
 
@@ -44,6 +48,22 @@ public class GroupHelper extends HelperBase{
 
 	public void submitGroupModification() {
 		click(By.name("update"));
+	}
+
+	public List<GroupData> getGroupList() {
+		List<GroupData> groups = new ArrayList<GroupData>();
+		List<WebElement> checkboxes = driver.findElements(By.xpath("//input[@name='selected[]']"));
+		String title;
+		for(WebElement checkbox: checkboxes){
+			GroupData group = new GroupData();
+			title = checkbox.getAttribute("title");
+			String namegr = title.substring(title.indexOf("(") + 1, title.indexOf(")"));
+			
+			group.groupName = title.substring(title.indexOf("(") + 1, title.indexOf(")"));
+			System.out.print(namegr);
+			groups.add(group);
+		}
+		return groups;
 	}
 	
 	
