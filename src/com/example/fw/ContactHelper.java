@@ -51,11 +51,11 @@ public class ContactHelper extends HelperBase{
 	
 	
 	public void selectContactByIndex(int index){
-		click(By.xpath("//table/descendant::input[@name= 'selected[]'][" + index + "]"));
+		click(By.xpath("//table/descendant::input[@name= 'selected[]'][" + (index + 1) + "]"));
 	}
 	
 	public void openContactEditPage(int index){
-		click(By.xpath("//table/descendant::img[@alt= 'Edit'][" + index + "]"));
+		click(By.xpath("//table/descendant::img[@alt= 'Edit'][" + (index + 1) + "]"));
 	}
 
 	public void deleteContact(int index){
