@@ -37,10 +37,10 @@ public class GroupData implements Comparable<GroupData>{
 		if (getClass() != obj.getClass())
 			return false;
 		GroupData other = (GroupData) obj;
-		if (footer == null) {
-			if (other.footer != null)
+		if (groupName == null) {
+			if (other.groupName != null)
 				return false;
-		} else if (!footer.equals(other.footer))
+		} else if (!groupName.equals(other.groupName))
 			return false;
 		return true;
 	}

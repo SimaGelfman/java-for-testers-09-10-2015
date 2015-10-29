@@ -22,21 +22,25 @@ public class GroupCreationTests extends TestBase{
     app.getGroupHelper().submitGroupCreation();
     app.getGroupHelper().returnToGroupsPage();  
     List<GroupData> newGroupsList = app.getGroupHelper().getGroupList();
-    
-	//assertEquals(newGroupsList.size(),oldGroupsList.size()+1);
-	oldGroupsList.add(group);
+    oldGroupsList.add(group);
 	Collections.sort(oldGroupsList);
 	assertEquals(newGroupsList, oldGroupsList);
 							
   }
   
- // @Test
+  @Test
   public void testEmptyGroupCreaetion() throws Exception {
     app.getNavigationHelper().goToMainPage();
     app.getNavigationHelper().goToGroupsPage();
+    List<GroupData> oldGroupsList = app.getGroupHelper().getGroupList();
     app.getGroupHelper().initGroupCreation();
-    app.getGroupHelper().fillGroupFormFields(new GroupData("", "", ""));
+    GroupData group = new GroupData("", "", "");
+	app.getGroupHelper().fillGroupFormFields(group);
     app.getGroupHelper().submitGroupCreation();
-    app.getGroupHelper().returnToGroupsPage();   
+    app.getGroupHelper().returnToGroupsPage();
+    List<GroupData> newGroupsList = app.getGroupHelper().getGroupList();
+    oldGroupsList.add(group);
+	Collections.sort(oldGroupsList);
+	assertEquals(newGroupsList, oldGroupsList);
   }
 }
