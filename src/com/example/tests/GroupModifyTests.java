@@ -21,8 +21,7 @@ public class GroupModifyTests extends TestBase{
 	    app.getGroupHelper().initGroupModification(index);
 		app.getGroupHelper().fillGroupFormFields(group);
 		app.getGroupHelper().submitGroupModification();
-		app.getGroupHelper().returnToGroupsPage();
-		
+		app.getGroupHelper().returnToGroupsPage();		
 		oldGroupsList.remove(index);
 		oldGroupsList.add(group);
 		Collections.sort(oldGroupsList);

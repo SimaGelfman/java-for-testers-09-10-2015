@@ -1,9 +1,9 @@
 package com.example.fw;
 
-import java.util.Scanner;
 import java.util.*;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import com.example.tests.ContactData;
 
@@ -12,6 +12,8 @@ public class ContactHelper extends HelperBase{
 	public ContactHelper(ApplicationManager manager) {
 		super(manager);
 	}
+	
+	
 
 	public void initContactCreation(){
 		click(By.linkText("add new"));
@@ -73,6 +75,21 @@ public class ContactHelper extends HelperBase{
 
 	public void submitContactModification() {
 		click(By.xpath("//form/descendant::input[@value='Update']"));		
+	}
+
+	public List<ContactData> getContactList() {
+		List<ContactData> contacts = new ArrayList<ContactData>();
+		List<WebElement> trs = driver.findElements(By.xpath("//tr[@name='entry']"));
+		String fname = "", lname = "";
+		for(WebElement tr: trs){
+			ContactData contact = new ContactData();
+			lname = tr.findElement(By.xpath(".//td[2]")).getText();
+			fname = tr.findElement(By.xpath(".//td[3]")).getText();
+			contact.firstName = fname;
+			contact.lastName = lname;
+			contacts.add(contact);
+		}
+		return contacts;
 	}
 	
 	

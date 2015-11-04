@@ -57,10 +57,7 @@ public class GroupHelper extends HelperBase{
 		for(WebElement checkbox: checkboxes){
 			GroupData group = new GroupData();
 			title = checkbox.getAttribute("title");
-			String namegr = title.substring(title.indexOf("(") + 1, title.indexOf(")"));
-			
 			group.groupName = title.substring(title.indexOf("(") + 1, title.indexOf(")"));
-			System.out.print(namegr);
 			groups.add(group);
 		}
 		return groups;
