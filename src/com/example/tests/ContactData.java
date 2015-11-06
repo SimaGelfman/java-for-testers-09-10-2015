@@ -1,5 +1,11 @@
 package com.example.tests;
 
+import java.util.List;
+import java.util.Random;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
 public class ContactData implements Comparable<ContactData>{
 	
 	public String firstName;
@@ -87,4 +93,6 @@ public class ContactData implements Comparable<ContactData>{
 	public String toString() {
 		return "ContactData [firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
+	
+
 }

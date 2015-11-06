@@ -92,6 +92,14 @@ public class ContactHelper extends HelperBase{
 		return contacts;
 	}
 	
+	public String chooseSelectOption(String selectName){
+		List<WebElement> options = driver.findElements(By.xpath("//select[@name = '" + selectName + "']/option"));
+		 Random rnd = new Random();
+		 int index = rnd.nextInt(options.size());
+		 return options.get(index).getText();
+		
+	}
+	
 	
 
 }
