@@ -29,14 +29,16 @@ public class TestBase {
 		List <Object[]>  list = new ArrayList<Object[]>();
 		Random rnd = new Random();
 		for (int i = 0; i < 5; i++) {
-			GroupData group = new GroupData();
-			group.groupName = generateRandomString();
-			group.footer = generateRandomString();
-			group.header = generateRandomString();
+			GroupData group = new GroupData()
+					.withName(generateRandomString())
+					.withFooter(generateRandomString())
+					.withHeader(generateRandomString());
 			list.add(new Object[]{group});
 		}		
 		return list.iterator();
 	}
+	
+	
 	
 	@DataProvider
 	public Iterator<Object[]> randomValidContactGenerator(){

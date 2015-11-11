@@ -12,16 +12,13 @@ public class GroupModifyTests extends TestBase{
 	
 	@Test(dataProvider = "randomValidGroupGenerator")
 	public void modifySomeGroup(GroupData group){
-		
-		app.getNavigationHelper().goToMainPage();
-		app.getNavigationHelper().goToGroupsPage();
+				
 		List<GroupData> oldGroupsList = app.getGroupHelper().getGroupList();
+		
 		Random rnd = new Random();
 	    int index = rnd.nextInt(oldGroupsList.size()-1);
-	    app.getGroupHelper().initGroupModification(index);
-		app.getGroupHelper().fillGroupFormFields(group);
-		app.getGroupHelper().submitGroupModification();
-		app.getGroupHelper().returnToGroupsPage();		
+	    app.getGroupHelper().modifyGroup(index, group);
+	    
 		oldGroupsList.remove(index);
 		oldGroupsList.add(group);
 		Collections.sort(oldGroupsList);

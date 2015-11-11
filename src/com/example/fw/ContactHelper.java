@@ -9,6 +9,9 @@ import com.example.tests.ContactData;
 
 public class ContactHelper extends HelperBase{
 
+public static boolean CREATION = true;
+public static boolean MODIFICATION = false;
+	
 	public ContactHelper(ApplicationManager manager) {
 		super(manager);
 	}
@@ -23,7 +26,7 @@ public class ContactHelper extends HelperBase{
 		click(By.name("submit"));
 	}
 
-	public void fillContactForm(ContactData contact) {
+	public void fillContactForm(ContactData contact, boolean typeForm) {
 		type(By.name("firstname"), contact.firstName);
 		type(By.name("lastname"), contact.lastName);
 		type(By.name("address"), contact.firstAdress);
@@ -32,8 +35,15 @@ public class ContactHelper extends HelperBase{
 		type(By.name("work"), contact.workPhoneNumber);
 		type(By.name("email"), contact.firstEmail);
 		type(By.name("email2"), contact.secondEmail);
-		if(contact.groupName != null){
-			selectByText(By.name("new_group"),contact.groupName);
+		if(typeForm == CREATION){
+			if(contact.groupName != null){
+				selectByText(By.name("new_group"),contact.groupName);
+			}
+		}
+		else{
+			if(driver.findElements(By.name("new_group")).size()!= 0){
+				throw new Error("Group selector exist in contact modification form");
+			}
 		}
 		if(contact.birthDay != null){
 			selectByText(By.name("bday"), contact.birthDay);

@@ -8,7 +8,7 @@ public class ContactRemovalTests extends TestBase{
 	
 	@Test
 	public void deleteSomeContact(){
-		app.getNavigationHelper().goToMainPage();
+		app.navigateTo().mainPage();
 		List<ContactData> oldContactsList = app.getContactHelper().getContactList();
 		app.getContactHelper().deleteContact(0);
 		app.getContactHelper().goToHomePage();
