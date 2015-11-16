@@ -42,6 +42,11 @@ public class GroupHelper extends HelperBase{
 	}
 	
 		
+	private void rebuildCash() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public GroupHelper deleteGroup(int i) {
 		manager.navigateTo().groupsPage();
 		selectGroupByIndex(i);
