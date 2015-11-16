@@ -10,7 +10,11 @@ public class NavigationHelper extends HelperBase{
 
 	public void mainPage() {
 		if(!onMainPage()){
+<<<<<<< HEAD
 			click(By.linkText("home"));
+=======
+			click(By.name("home"));
+>>>>>>> c12f6b54905a8444a5ad1d6755b56a7853a2ff23
 		}
 	}
 

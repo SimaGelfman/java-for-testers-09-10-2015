@@ -13,6 +13,9 @@ public class GroupHelper extends HelperBase{
 	public GroupHelper(ApplicationManager manager) {
 		super(manager);
 		}
+	
+	private List<GroupData> cashGroups;
+	
 	public GroupHelper createGroup(GroupData group) {
 		manager.navigateTo().groupsPage();
 		initGroupCreation();
@@ -23,6 +26,9 @@ public class GroupHelper extends HelperBase{
 	}
 
 	public List<GroupData> getGroupList() {
+		if(cashGroups == null){
+			rebuildCash();
+		}
 		manager.navigateTo().groupsPage();
 		List<GroupData> groups = new ArrayList<GroupData>();
 		List<WebElement> checkboxes = driver.findElements(By.xpath("//input[@name='selected[]']"));
