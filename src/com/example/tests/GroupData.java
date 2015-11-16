@@ -64,7 +64,7 @@ public class GroupData implements Comparable<GroupData>{
 
 	public GroupData withName(String groupName) {
 		this.groupName = groupName;
-		return null;
+		return this;
 	}
 
 	public GroupData withFooter(String footer) {

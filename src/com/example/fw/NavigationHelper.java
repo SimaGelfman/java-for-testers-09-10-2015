@@ -10,12 +10,12 @@ public class NavigationHelper extends HelperBase{
 
 	public void mainPage() {
 		if(!onMainPage()){
-			driver.get(manager.baseUrl + "/addressbook/");
+			click(By.linkText("home"));
 		}
 	}
 
 	private boolean onMainPage() {
-		return false;
+		return driver.findElements(By.id("maintable")).size()>0;
 	}
 
 	public void groupsPage() {
