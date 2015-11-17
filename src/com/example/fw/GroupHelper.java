@@ -14,7 +14,7 @@ public class GroupHelper extends HelperBase{
 		super(manager);
 		}
 	
-	private List<GroupData> cashGroups;
+	private List<GroupData> cachedGroups;
 	
 	public GroupHelper createGroup(GroupData group) {
 		manager.navigateTo().groupsPage();
@@ -22,29 +22,28 @@ public class GroupHelper extends HelperBase{
     	fillGroupFormFields(group);
     	submitGroupCreation();
     	returnToGroupsPage();
+    	rebuildCach();
     	return this;
 	}
 
 	public List<GroupData> getGroupList() {
-		if(cashGroups == null){
-			rebuildCash();
+		if(cachedGroups == null){
+			rebuildCach();
 		}
+		return cachedGroups;}
+	
+		
+	private void rebuildCach() {
+
 		manager.navigateTo().groupsPage();
-		List<GroupData> groups = new ArrayList<GroupData>();
+		List<GroupData> cachedGroups = new ArrayList<GroupData>();
 		List<WebElement> checkboxes = driver.findElements(By.xpath("//input[@name='selected[]']"));
 		String title;
 		for(WebElement checkbox: checkboxes){
 			title = checkbox.getAttribute("title");
 			String groupName = title.substring(title.indexOf("(") + 1, title.indexOf(")"));
-			groups.add(new GroupData().withName(groupName));
-		}
-		return groups;
-	}
-	
-		
-	private void rebuildCash() {
-		// TODO Auto-generated method stub
-		
+			cachedGroups.add(new GroupData().withName(groupName));
+		}	
 	}
 
 	public GroupHelper deleteGroup(int i) {
@@ -52,6 +51,7 @@ public class GroupHelper extends HelperBase{
 		selectGroupByIndex(i);
 		submitGroupDeletion();
 		returnToGroupsPage();
+		rebuildCach();
 		return this;
 	}
 	
@@ -61,6 +61,7 @@ public class GroupHelper extends HelperBase{
     	fillGroupFormFields(group);
     	submitGroupModification();
     	returnToGroupsPage();
+    	rebuildCach();
     	return this;
 	}
 
@@ -69,8 +70,10 @@ public class GroupHelper extends HelperBase{
 	//--------------------------------------
 	
 	
-	public void submitGroupDeletion() {
+	public GroupHelper submitGroupDeletion() {
 		click(By.name("delete"));
+		cachedGroups = null;
+		return this;
 	}
 	
 
@@ -88,6 +91,7 @@ public class GroupHelper extends HelperBase{
 
 	public GroupHelper submitGroupCreation() {
 		click(By.name("submit"));
+		cachedGroups = null;
 		return this;
 	}
 
@@ -111,6 +115,7 @@ public class GroupHelper extends HelperBase{
 
 	public GroupHelper submitGroupModification() {
 		click(By.name("update"));
+		cachedGroups = null;
 		return this;
 	}
 	
