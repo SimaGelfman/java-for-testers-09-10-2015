@@ -58,6 +58,15 @@ public class GroupHelper extends HelperBase{
 		return this;
 	}
 	
+	public GroupHelper deleteGroupByGroupName(String groupName) {
+		manager.navigateTo().groupsPage();
+		selectGroupByIndex(i);
+		submitGroupDeletion();
+		returnToGroupsPage();
+		rebuildCach();
+		return this;
+	}
+	
 	public GroupHelper modifyGroup(int index, GroupData group) {
 		manager.navigateTo().groupsPage();
 		initGroupModification(index);
