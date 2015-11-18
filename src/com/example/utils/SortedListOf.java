@@ -68,6 +68,8 @@ public class SortedListOf<T extends Comparable<T>> extends ForwardingList<T> {
     return newItems;
   }
 
+
+  
   public T getSome() {
     if (size() == 0) {
       return null;

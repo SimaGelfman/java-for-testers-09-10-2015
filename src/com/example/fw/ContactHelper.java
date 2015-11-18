@@ -16,16 +16,34 @@ public static boolean MODIFICATION = false;
 		super(manager);
 	}
 	
+	private List<ContactData> cachedContacts;
+
 	
-
-	public void initContactCreation(){
-		click(By.linkText("add new"));
+	public List<ContactData> getContactList() {
+		if(cachedContacts == null){
+			rebuildCach();
+		}
+		return cachedContacts;
+	}
+	
+	private void rebuildCach() {
+		cachedContacts = new ArrayList<ContactData>();
+		List<WebElement> trs = driver.findElements(By.xpath("//tr[@name='entry']"));
+		String fname = "", lname = "";
+		for(WebElement tr: trs){
+			ContactData contact = new ContactData();
+			lname = tr.findElement(By.xpath(".//td[2]")).getText();
+			fname = tr.findElement(By.xpath(".//td[3]")).getText();
+			contact.firstName = fname;
+			contact.lastName = lname;
+			cachedContacts.add(contact);
+		}
+		
 	}
 
-	public void submitContactCreation() {
-		click(By.name("submit"));
-	}
-
+	
+	//----------------------------------
+	
 	public void fillContactForm(ContactData contact, boolean typeForm) {
 		type(By.name("firstname"), contact.firstName);
 		type(By.name("lastname"), contact.lastName);
@@ -87,20 +105,7 @@ public static boolean MODIFICATION = false;
 		click(By.xpath("//form/descendant::input[@value='Update']"));		
 	}
 
-	public List<ContactData> getContactList() {
-		List<ContactData> contacts = new ArrayList<ContactData>();
-		List<WebElement> trs = driver.findElements(By.xpath("//tr[@name='entry']"));
-		String fname = "", lname = "";
-		for(WebElement tr: trs){
-			ContactData contact = new ContactData();
-			lname = tr.findElement(By.xpath(".//td[2]")).getText();
-			fname = tr.findElement(By.xpath(".//td[3]")).getText();
-			contact.firstName = fname;
-			contact.lastName = lname;
-			contacts.add(contact);
-		}
-		return contacts;
-	}
+
 	
 	public String chooseSelectOption(String selectName){
 		List<WebElement> options = driver.findElements(By.xpath("//select[@name = '" + selectName + "']/option"));
@@ -110,6 +115,14 @@ public static boolean MODIFICATION = false;
 		
 	}
 	
+	public void initContactCreation(){
+		click(By.linkText("add new"));
+	}
+
+	public void submitContactCreation() {
+		click(By.name("submit"));
+	}
+
 	
 
 }

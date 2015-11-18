@@ -56,7 +56,7 @@ public class TestBase {
 			contact.homePhoneNumber = Integer.toString(rnd.nextInt(900000000) +100000000);
 			contact.mobilePhoneNumber = Integer.toString(rnd.nextInt(900000000) +100000000);
 			contact.workPhoneNumber = Integer.toString(rnd.nextInt(900000000) +100000000);
-			contact.birthDay = Integer.toString(rnd.nextInt(32));
+			contact.birthDay = Integer.toString(rnd.nextInt(31) +1);
 			contact.birthMonth = months[rnd.nextInt(months.length)];
 			contact.birthYear = Integer.toString(rnd.nextInt(95) +1920);;
 			contact.secondAdress =  generateRandomString();
@@ -66,6 +66,24 @@ public class TestBase {
 		return list.iterator();
 	}
 	
+	@DataProvider
+	public Iterator<Object[]> selectGroupNameFromList(){
+		Random rnd = new Random();
+		List<Object[]> list = new ArrayList<Object[]>();
+		for(int i = 0; i < 5; i++)
+		{
+			String groupName = new String();
+			if(rnd.nextInt(3) == 0){
+				groupName = "Select ()";
+			} else{
+				groupName = "test";
+			}
+			list.add(new Object[]{groupName});
+		}
+	 return	list.iterator();
+	}
+	
+	
 	public String generateRandomString(){
 		Random rnd = new Random();
 		if(rnd.nextInt(3) == 0){
@@ -74,6 +92,8 @@ public class TestBase {
 			return "test" + rnd.nextInt();
 		}
 	}
+	
+	
 	
 	
 	

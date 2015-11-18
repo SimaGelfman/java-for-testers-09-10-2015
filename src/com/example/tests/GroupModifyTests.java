@@ -18,12 +18,13 @@ public class GroupModifyTests extends TestBase{
 		
 		Random rnd = new Random();
 	    int index = rnd.nextInt(oldGroupsList.size()-1);
+	    GroupData selectedGroup = oldGroupsList.get(index); 
 	    //action
-	    app.getGroupHelper().modifyGroup(index, group);
+	    app.getGroupHelper().modifyGroupGroupName(selectedGroup.getGroupName(), group);
 	    //save new state
 		SortedListOf<GroupData> newGroupsList = app.getGroupHelper().getGroupList();
 		//compare states
-		assertThat(newGroupsList, equalTo(oldGroupsList.without(index).withAdded(group)));
+		assertThat(newGroupsList, equalTo(oldGroupsList.without(selectedGroup).withAdded(group)));
 	}
 
 }

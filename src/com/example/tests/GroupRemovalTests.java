@@ -11,6 +11,7 @@ import com.example.utils.SortedListOf;
 
 public class GroupRemovalTests extends TestBase{
 	
+	
 	@Test
 	public void deleteSomeGroup(){
 		
@@ -19,8 +20,9 @@ public class GroupRemovalTests extends TestBase{
 	    
 		Random rnd = new Random();
 	    int index = rnd.nextInt(oldGroupsList.size()-1);
+	    GroupData group = oldGroupsList.get(index);
 	   //action
-	    app.getGroupHelper().deleteGroup(index);
+	    app.getGroupHelper().deleteGroupByGroupName(group.getGroupName());
 	    	
 	   //save new state
 	    SortedListOf<GroupData> newGroupsList = app.getGroupHelper().getGroupList();

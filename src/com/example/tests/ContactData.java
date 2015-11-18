@@ -94,5 +94,29 @@ public class ContactData implements Comparable<ContactData>{
 		return "ContactData [firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
 	
+	public ContactData withFirstName(String firstName){
+		this.firstName = firstName;
+		return this;
+	}
+	
+	public ContactData withLatName(String lastName){
+		this.lastName = lastName;
+		return this;
+	}
+	
+	public ContactData withFirstAdress(String firstAdress){
+		this.firstAdress = firstAdress;
+		return this;
+	}
+	
+	public ContactData withHomePhoneNumber(String homePhoneNumber){
+		this.homePhoneNumber = homePhoneNumber;
+		return this;
+	}
+	
+	public ContactData withMobilePhoneNumber(String mobilePhoneNumber){
+		this.mobilePhoneNumber = mobilePhoneNumber;
+		return this;
+	}
 
 }

@@ -16,7 +16,7 @@ public class GroupHelper extends HelperBase{
 		super(manager);
 		}
 	
-	private SortedListOf<GroupData> cachedGroups = null;
+	private SortedListOf<GroupData> cachedGroups;
 	
 	public GroupHelper createGroup(GroupData group) {
 		manager.navigateTo().groupsPage();
@@ -60,7 +60,7 @@ public class GroupHelper extends HelperBase{
 	
 	public GroupHelper deleteGroupByGroupName(String groupName) {
 		manager.navigateTo().groupsPage();
-		selectGroupByIndex(i);
+		selectGroupByName(groupName);
 		submitGroupDeletion();
 		returnToGroupsPage();
 		rebuildCach();
@@ -70,6 +70,16 @@ public class GroupHelper extends HelperBase{
 	public GroupHelper modifyGroup(int index, GroupData group) {
 		manager.navigateTo().groupsPage();
 		initGroupModification(index);
+    	fillGroupFormFields(group);
+    	submitGroupModification();
+    	returnToGroupsPage();
+    	rebuildCach();
+    	return this;
+	}
+	
+	public GroupHelper modifyGroupGroupName(String groupName, GroupData group) {
+		manager.navigateTo().groupsPage();
+		initGroupModificationByGroupName(groupName);
     	fillGroupFormFields(group);
     	submitGroupModification();
     	returnToGroupsPage();
@@ -125,12 +135,24 @@ public class GroupHelper extends HelperBase{
 		return this;
 	}
 
+	public GroupHelper initGroupModificationByGroupName(String groupName) {
+		selectGroupByName(groupName);
+		click(By.name("edit"));
+		return this;
+	}
+	
 	public GroupHelper submitGroupModification() {
 		click(By.name("update"));
 		cachedGroups = null;
 		return this;
 	}
 	
+
+	private GroupHelper selectGroupByName(String groupName) {
+		click(By.xpath("//input[@type = 'checkbox' and @name = 'selected[]' and contains(@title, '" + groupName + "')][1]")); 
+		return this;
+	}
+
 	
 
 	
