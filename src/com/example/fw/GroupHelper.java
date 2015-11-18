@@ -16,7 +16,7 @@ public class GroupHelper extends HelperBase{
 		super(manager);
 		}
 	
-	private SortedListOf<GroupData> cachedGroups;
+	private SortedListOf<GroupData> cachedGroups = null;
 	
 	public GroupHelper createGroup(GroupData group) {
 		manager.navigateTo().groupsPage();
@@ -39,7 +39,7 @@ public class GroupHelper extends HelperBase{
 	private void rebuildCach() {
 
 		manager.navigateTo().groupsPage();
-		SortedListOf<GroupData> cachedGroups = new SortedListOf<GroupData>();
+		cachedGroups = new SortedListOf<GroupData>();
 		List<WebElement> checkboxes = driver.findElements(By.xpath("//input[@name='selected[]']"));
 		String title;
 		for(WebElement checkbox: checkboxes){
