@@ -17,10 +17,8 @@ public class ContactModifyTests extends TestBase{
 		List<ContactData> oldContactsList = app.getContactHelper().getContactList();
 		Random rnd = new Random();
 	    int index = rnd.nextInt(oldContactsList.size()-1);
-		app.getContactHelper().initContactModification(index);
-		app.getContactHelper().fillContactForm(contact, MODIFICATION);
-		app.getContactHelper().submitContactModification();
-		app.getContactHelper().goToHomePage();
+		app.getContactHelper().modifyContact(contact, MODIFICATION)
+		
 		oldContactsList.remove(index);
 		oldContactsList.add(contact);
 		Collections.sort(oldContactsList);

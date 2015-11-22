@@ -47,20 +47,20 @@ public class TestBase {
 		Random rnd = new Random();
 		String[] months = {"-", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 		for(int i = 0; i<5; i++){
-			ContactData contact = new ContactData();
-			contact.firstName = generateRandomString();
-			contact.lastName = generateRandomString();
-			contact.firstAdress = generateRandomString();
-			contact.firstEmail = "mail" + rnd.nextInt() + "@" + "gmail.com";
-			contact.secondEmail = "mail" + rnd.nextInt() + "@" + "yahoo.com";
-			contact.homePhoneNumber = Integer.toString(rnd.nextInt(900000000) +100000000);
-			contact.mobilePhoneNumber = Integer.toString(rnd.nextInt(900000000) +100000000);
-			contact.workPhoneNumber = Integer.toString(rnd.nextInt(900000000) +100000000);
-			contact.birthDay = Integer.toString(rnd.nextInt(31) +1);
-			contact.birthMonth = months[rnd.nextInt(months.length)];
-			contact.birthYear = Integer.toString(rnd.nextInt(95) +1920);;
-			contact.secondAdress =  generateRandomString();
-			contact.homeNumber =  Integer.toString(rnd.nextInt(50));
+			ContactData contact = new ContactData()
+								.withFirstName(generateRandomString())
+								.withLastName(generateRandomString())
+								.withFirstAdress(generateRandomString())
+								.withFirstEmail("mail" + rnd.nextInt() + "@" + "gmail.com")
+								.withSecondEmail("mail" + rnd.nextInt() + "@" + "yahoo.com")
+								.withHomePhoneNumber(Integer.toString(rnd.nextInt(900000000) +100000000))
+								.withMobilePhoneNumber(Integer.toString(rnd.nextInt(900000000) +100000000))
+								.withWorkPhoneNumber(Integer.toString(rnd.nextInt(900000000) +100000000))
+								.withBirthDay(Integer.toString(rnd.nextInt(31) +1))
+								.withBirthMonth(months[rnd.nextInt(months.length)])
+								.withBirthYear(Integer.toString(rnd.nextInt(95) +1920))
+								.withSecondAdress(generateRandomString())
+								.withHomeNumber(Integer.toString(rnd.nextInt(50)));
 			list.add(new Object[]{contact});			
 		}
 		return list.iterator();

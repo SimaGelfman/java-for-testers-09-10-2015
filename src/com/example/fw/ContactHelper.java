@@ -1,5 +1,8 @@
 package com.example.fw;
 
+import static com.example.fw.ContactHelper.CREATION;
+import static com.example.fw.ContactHelper.MODIFICATION;
+
 import java.util.*;
 
 import org.openqa.selenium.By;
@@ -27,6 +30,7 @@ public static boolean MODIFICATION = false;
 	}
 	
 	private void rebuildCach() {
+		manager.navigateTo().mainPage();
 		cachedContacts = new ArrayList<ContactData>();
 		List<WebElement> trs = driver.findElements(By.xpath("//tr[@name='entry']"));
 		String fname = "", lname = "";
@@ -40,11 +44,31 @@ public static boolean MODIFICATION = false;
 		}
 		
 	}
+	
+	public ContactHelper createContact(ContactData contact) {
+		manager.navigateTo().mainPage();
+		initContactCreation();
+	    fillContactForm(contact, CREATION);
+	    submitContactCreation();
+	    goToHomePage();
+	    rebuildCach();
+	    return this;
+		
+	}
+	
+	public ContactHelper modifyContact(ContactData contact, boolean mODIFICATION2) {
+		initContactModification(index);
+		fillContactForm(contact, MODIFICATION);
+		submitContactModification();
+		goToHomePage();// TODO Auto-generated method stub
+		return null;
+	}
 
+	
 	
 	//----------------------------------
 	
-	public void fillContactForm(ContactData contact, boolean typeForm) {
+	public ContactHelper fillContactForm(ContactData contact, boolean typeForm) {
 		type(By.name("firstname"), contact.firstName);
 		type(By.name("lastname"), contact.lastName);
 		type(By.name("address"), contact.firstAdress);
@@ -72,37 +96,46 @@ public static boolean MODIFICATION = false;
 		type(By.name("byear"), contact.birthYear);
 		type(By.name("address2"), contact.secondAdress);
 		type(By.name("phone2"), contact.homeNumber);
+		return this;
 	}
 
-	public void goToHomePage() {
+	public ContactHelper goToHomePage() {
 		click(By.linkText("home page"));
+		return this;
 	}
 	
 	
 	
-	public void selectContactByIndex(int index){
+	public ContactHelper selectContactByIndex(int index){
 		click(By.xpath("//table/descendant::input[@name= 'selected[]'][" + (index + 1) + "]"));
+		return this;
 	}
 	
-	public void openContactEditPage(int index){
+	public ContactHelper openContactEditPage(int index){
 		click(By.xpath("//table/descendant::img[@alt= 'Edit'][" + (index + 1) + "]"));
+		return this;
 	}
 
-	public void deleteContact(int index){
+	public ContactHelper deleteContact(int index){
 		openContactEditPage(index);
 		click(By.xpath("//form/descendant::input[@value='Delete']"));
+		cachedContacts = null;
+		return this;
 	}
 	
 	
 
-	public void initContactModification(int index) {
+	public ContactHelper initContactModification(int index) {
 		openContactEditPage(index);
+		return this;
 	}
 	
 	
 
-	public void submitContactModification() {
-		click(By.xpath("//form/descendant::input[@value='Update']"));		
+	public ContactHelper submitContactModification() {
+		click(By.xpath("//form/descendant::input[@value='Update']"));
+		cachedContacts = null;
+		return this;
 	}
 
 
@@ -111,17 +144,22 @@ public static boolean MODIFICATION = false;
 		List<WebElement> options = driver.findElements(By.xpath("//select[@name = '" + selectName + "']/option"));
 		 Random rnd = new Random();
 		 int index = rnd.nextInt(options.size());
-		 return options.get(index).getText();
-		
+		 return options.get(index).getText();		
 	}
 	
-	public void initContactCreation(){
+	public ContactHelper initContactCreation(){
 		click(By.linkText("add new"));
+		return this;
 	}
 
-	public void submitContactCreation() {
+	public ContactHelper submitContactCreation() {
 		click(By.name("submit"));
+		cachedContacts = null;
+		return this;
 	}
+
+
+
 
 	
 

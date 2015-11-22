@@ -1,11 +1,5 @@
 package com.example.tests;
 
-import java.util.List;
-import java.util.Random;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
 public class ContactData implements Comparable<ContactData>{
 	
 	public String firstName;
@@ -99,7 +93,7 @@ public class ContactData implements Comparable<ContactData>{
 		return this;
 	}
 	
-	public ContactData withLatName(String lastName){
+	public ContactData withLastName(String lastName){
 		this.lastName = lastName;
 		return this;
 	}
@@ -116,6 +110,52 @@ public class ContactData implements Comparable<ContactData>{
 	
 	public ContactData withMobilePhoneNumber(String mobilePhoneNumber){
 		this.mobilePhoneNumber = mobilePhoneNumber;
+		return this;
+	}
+	
+	
+	public ContactData withWorkPhoneNumber(String workPhoneNumber){
+		this.workPhoneNumber = workPhoneNumber;
+		return this;
+	}
+	
+	public ContactData withFirstEmail(String firstEmail){
+		this.firstEmail = firstEmail;
+		return this;
+	}
+	
+	public ContactData withSecondEmail(String secondEmail){
+		this.secondEmail = secondEmail;
+		return this;
+	}
+	
+	public ContactData withGroupName(String groupName){
+		this.groupName = groupName;
+		return this;
+	}
+	
+	public ContactData withBirthDay(String birthDay){
+		this.birthDay = birthDay;
+		return this;
+	}
+	
+	public ContactData withBirthMonth(String birthMonth){
+		this.birthMonth = birthMonth;
+		return this;
+	}
+	
+	public ContactData withBirthYear(String birthYear){
+		this.birthYear = birthYear;
+		return this;
+	}
+
+	public ContactData withSecondAdress(String secondAdress){
+		this.secondAdress = secondAdress;
+		return this;
+	}
+	
+	public ContactData withHomeNumber(String homeNumber){
+		this.homeNumber = homeNumber;
 		return this;
 	}
 
