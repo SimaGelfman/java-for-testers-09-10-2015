@@ -8,12 +8,14 @@ public class ContactRemovalTests extends TestBase{
 	
 	@Test
 	public void deleteSomeContact(){
-		app.navigateTo().mainPage();
+		//save old state
 		List<ContactData> oldContactsList = app.getContactHelper().getContactList();
-		app.getContactHelper().deleteContact(0);
-		app.getContactHelper().goToHomePage();
+		//actions
+		app.getContactHelper().deleteContactByIndex(0);
 		oldContactsList.remove(0);
+		//save new states
 		List<ContactData> newContactsList = app.getContactHelper().getContactList();
+		//compare
 		assertEquals(newContactsList, oldContactsList);
 	}
 

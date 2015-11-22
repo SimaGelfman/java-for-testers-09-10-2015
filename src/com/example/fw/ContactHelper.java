@@ -56,12 +56,21 @@ public static boolean MODIFICATION = false;
 		
 	}
 	
-	public ContactHelper modifyContact(ContactData contact, boolean mODIFICATION2) {
+	public ContactHelper modifyContact(int index, ContactData contact, boolean mODIFICATION2) {
+		manager.navigateTo().mainPage();
 		initContactModification(index);
 		fillContactForm(contact, MODIFICATION);
 		submitContactModification();
-		goToHomePage();// TODO Auto-generated method stub
-		return null;
+		goToHomePage();
+		return this;
+	}
+	
+	public ContactHelper deleteContactByIndex(int index) {
+		manager.navigateTo().mainPage();
+		deleteContact(index);
+		goToHomePage();
+		rebuildCach();
+		return this;
 	}
 
 	
@@ -157,6 +166,8 @@ public static boolean MODIFICATION = false;
 		cachedContacts = null;
 		return this;
 	}
+
+	
 
 
 
