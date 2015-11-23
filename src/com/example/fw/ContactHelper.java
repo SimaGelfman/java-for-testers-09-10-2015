@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.example.tests.ContactData;
+import com.example.utils.SortedListOf;
 
 public class ContactHelper extends HelperBase{
 
@@ -19,10 +20,10 @@ public static boolean MODIFICATION = false;
 		super(manager);
 	}
 	
-	private List<ContactData> cachedContacts;
+	private SortedListOf<ContactData> cachedContacts;
 
 	
-	public List<ContactData> getContactList() {
+	public SortedListOf<ContactData> getContactList() {
 		if(cachedContacts == null){
 			rebuildCach();
 		}
@@ -31,7 +32,7 @@ public static boolean MODIFICATION = false;
 	
 	private void rebuildCach() {
 		manager.navigateTo().mainPage();
-		cachedContacts = new ArrayList<ContactData>();
+		cachedContacts = new SortedListOf<ContactData>();
 		List<WebElement> trs = driver.findElements(By.xpath("//tr[@name='entry']"));
 		String fname = "", lname = "";
 		for(WebElement tr: trs){

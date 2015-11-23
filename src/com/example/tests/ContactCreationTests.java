@@ -1,11 +1,11 @@
 package com.example.tests;
 
-import java.util.Collections;
-import java.util.List;
-import static org.testng.Assert.assertEquals;
-import static com.example.fw.ContactHelper.CREATION;
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertThat;
 
 import org.testng.annotations.Test;
+
+import com.example.utils.SortedListOf;
 
 public class ContactCreationTests extends TestBase{ 
 
@@ -14,16 +14,13 @@ public class ContactCreationTests extends TestBase{
 public void testContactCreationWithValidData(ContactData contact) throws Exception {
 	
 	//save old state
-	List<ContactData> oldContactsList =  app.getContactHelper().getContactList();
+	SortedListOf<ContactData> oldContactsList =  app.getContactHelper().getContactList();
 	//actions
 	app.getContactHelper().createContact(contact);
-	
-    oldContactsList.add(contact);
-    Collections.sort(oldContactsList);
-    //save new state
-    List<ContactData> newContactsList =  app.getContactHelper().getContactList();
+	//save new state
+    SortedListOf<ContactData> newContactsList =  app.getContactHelper().getContactList();
     //compare states
-    assertEquals(newContactsList,oldContactsList);
+    assertThat(newContactsList,equalTo(oldContactsList.withAdded(contact)));
 }
 
 }

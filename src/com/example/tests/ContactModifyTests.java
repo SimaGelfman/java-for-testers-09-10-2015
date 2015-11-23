@@ -9,12 +9,14 @@ import static org.testng.Assert.assertEquals;
 
 import org.testng.annotations.Test;
 
+import com.example.utils.SortedListOf;
+
 public class ContactModifyTests extends TestBase{
 
 	@Test(dataProvider = "randomValidContactGenerator")
 	public void modifySomeContact(ContactData contact){
 		//save old states
-		List<ContactData> oldContactsList = app.getContactHelper().getContactList();
+		SortedListOf<ContactData> oldContactsList = app.getContactHelper().getContactList();
 		
 		Random rnd = new Random();
 	    int index = rnd.nextInt(oldContactsList.size()-1);
@@ -25,7 +27,7 @@ public class ContactModifyTests extends TestBase{
 		oldContactsList.add(contact);
 		Collections.sort(oldContactsList);
 		//save new states
-		List<ContactData> newContactsList = app.getContactHelper().getContactList();
+		SortedListOf<ContactData> newContactsList = app.getContactHelper().getContactList();
 		//compare
 		assertEquals(newContactsList, oldContactsList);
 	}
