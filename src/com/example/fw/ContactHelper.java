@@ -169,6 +169,10 @@ public static boolean MODIFICATION = false;
 	}
 
 	
+	public ContactHelper selectContactByFirstName(String firstName){
+		click(By.xpath(xpathExpression))
+	}
+	
 
 
 
