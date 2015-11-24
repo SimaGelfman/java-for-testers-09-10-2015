@@ -3,6 +3,10 @@ package com.example.tests;
 public class ContactData implements Comparable<ContactData>{
 	
 	public String firstName;
+	public String getFirstName() {
+		return firstName;
+	}
+
 	public String lastName;
 	public String firstAdress;
 	public String homePhoneNumber;

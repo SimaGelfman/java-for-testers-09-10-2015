@@ -1,9 +1,7 @@
 package com.example.fw;
 
-import static com.example.fw.ContactHelper.CREATION;
-import static com.example.fw.ContactHelper.MODIFICATION;
-
-import java.util.*;
+import java.util.List;
+import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -66,9 +64,26 @@ public static boolean MODIFICATION = false;
 		return this;
 	}
 	
+	public ContactHelper modifyContactByFirstName(String firstName, ContactData contact, boolean mODIFICATION2) {
+		manager.navigateTo().mainPage();
+		openContactEditPageByFirstName(firstName);
+		fillContactForm(contact, MODIFICATION);
+		submitContactModification();
+		goToHomePage();
+		return this;
+	}
+	
 	public ContactHelper deleteContactByIndex(int index) {
 		manager.navigateTo().mainPage();
 		deleteContact(index);
+		goToHomePage();
+		rebuildCach();
+		return this;
+	}
+	
+	public ContactHelper deleteContactFirstName(String firstName) {
+		manager.navigateTo().mainPage();
+		initDeletionContactByFirstName(firstName);
 		goToHomePage();
 		rebuildCach();
 		return this;
@@ -133,12 +148,21 @@ public static boolean MODIFICATION = false;
 		return this;
 	}
 	
+	public ContactHelper initDeletionContactByFirstName(String firstName){
+		openContactEditPageByFirstName(firstName);
+		click(By.xpath("//form/descendant::input[@value='Delete']"));
+		cachedContacts = null;
+		return this;
+	}	
+	
+	
 	
 
 	public ContactHelper initContactModification(int index) {
 		openContactEditPage(index);
 		return this;
 	}
+	
 	
 	
 
@@ -169,14 +193,9 @@ public static boolean MODIFICATION = false;
 	}
 
 	
-	public ContactHelper selectContactByFirstName(String firstName){
-		click(By.xpath(xpathExpression))
+	public ContactHelper openContactEditPageByFirstName(String firstName){
+		click(By.xpath("(//table//tr/td[3][contains(text(), '" + firstName +"')])[1]//..//img[@alt='Edit']"));		
+		return this;
 	}
 	
-
-
-
-
-	
-
 }

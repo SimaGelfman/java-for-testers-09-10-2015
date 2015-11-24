@@ -140,7 +140,7 @@ public class GroupHelper extends HelperBase{
 		click(By.name("edit"));
 		return this;
 	}
-	
+	 
 	public GroupHelper submitGroupModification() {
 		click(By.name("update"));
 		cachedGroups = null;

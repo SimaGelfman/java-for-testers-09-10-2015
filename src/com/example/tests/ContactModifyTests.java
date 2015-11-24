@@ -1,6 +1,8 @@
 package com.example.tests;
 
 import java.util.Collections;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.Matchers.*;
 import java.util.List;
 import java.util.Random;
 import static com.example.fw.ContactHelper.MODIFICATION;
@@ -20,16 +22,15 @@ public class ContactModifyTests extends TestBase{
 		
 		Random rnd = new Random();
 	    int index = rnd.nextInt(oldContactsList.size()-1);
+	    ContactData modifiedContact = oldContactsList.get(index);
 		//actions
-	    app.getContactHelper().modifyContact(index, contact, MODIFICATION);
+	    app.getContactHelper().modifyContactByFirstName(modifiedContact.getFirstName(), contact, MODIFICATION);
 		
-		oldContactsList.remove(index);
-		oldContactsList.add(contact);
-		Collections.sort(oldContactsList);
+		
 		//save new states
 		SortedListOf<ContactData> newContactsList = app.getContactHelper().getContactList();
 		//compare
-		assertEquals(newContactsList, oldContactsList);
+		assertThat(newContactsList, equalTo(oldContactsList.without(modifiedContact).withAdded(contact)));
 	}
 	
 }
