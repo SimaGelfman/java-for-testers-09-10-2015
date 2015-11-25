@@ -30,9 +30,9 @@ public class TestBase {
 		Random rnd = new Random();
 		for (int i = 0; i < 5; i++) {
 			GroupData group = new GroupData()
-					.withName(generateRandomString())
-					.withFooter(generateRandomString())
-					.withHeader(generateRandomString());
+					.withName(generateRandomString())					
+					.withHeader(generateRandomString())
+					.withFooter(generateRandomString());
 			list.add(new Object[]{group});
 		}		
 		return list.iterator();
