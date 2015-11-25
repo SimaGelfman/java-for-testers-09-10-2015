@@ -8,6 +8,10 @@ public class ContactData implements Comparable<ContactData>{
 	}
 
 	public String lastName;
+	public String getLastName() {
+		return lastName;
+	}
+
 	public String firstAdress;
 	public String homePhoneNumber;
 	public String mobilePhoneNumber;

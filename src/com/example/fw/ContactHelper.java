@@ -64,9 +64,9 @@ public static boolean MODIFICATION = false;
 		return this;
 	}
 	
-	public ContactHelper modifyContactByFirstName(String firstName, ContactData contact, boolean mODIFICATION2) {
+	public ContactHelper modifyContactByName(String firstName, String lastName, ContactData contact) {
 		manager.navigateTo().mainPage();
-		openContactEditPageByFirstName(firstName);
+		openContactEditPageByName(firstName,lastName);
 		fillContactForm(contact, MODIFICATION);
 		submitContactModification();
 		goToHomePage();
@@ -81,9 +81,9 @@ public static boolean MODIFICATION = false;
 		return this;
 	}
 	
-	public ContactHelper deleteContactFirstName(String firstName) {
+	public ContactHelper deleteContactByName(String firstName, String lastName) {
 		manager.navigateTo().mainPage();
-		initDeletionContactByFirstName(firstName);
+		initDeletionContactByName(firstName, lastName);
 		goToHomePage();
 		rebuildCach();
 		return this;
@@ -148,8 +148,8 @@ public static boolean MODIFICATION = false;
 		return this;
 	}
 	
-	public ContactHelper initDeletionContactByFirstName(String firstName){
-		openContactEditPageByFirstName(firstName);
+	public ContactHelper initDeletionContactByName(String firstName, String lastName){
+		openContactEditPageByName(firstName, lastName);
 		click(By.xpath("//form/descendant::input[@value='Delete']"));
 		cachedContacts = null;
 		return this;
@@ -193,8 +193,8 @@ public static boolean MODIFICATION = false;
 	}
 
 	
-	public ContactHelper openContactEditPageByFirstName(String firstName){
-		click(By.xpath("(//table//tr/td[3][contains(text(), '" + firstName +"')])[1]//..//img[@alt='Edit']"));		
+	public ContactHelper openContactEditPageByName(String firstName, String lastName){
+		click(By.xpath("//table//tr[contains(./td[2], '" + lastName + "') and contains(./td[3], '" + firstName +"')][1]//img[@alt='Edit']"));		
 		return this;
 	}
 	

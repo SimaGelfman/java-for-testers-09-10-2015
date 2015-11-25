@@ -19,10 +19,10 @@ public class ContactRemovalTests extends TestBase{
 		SortedListOf<ContactData> oldContactsList = app.getContactHelper().getContactList();
 		
 		Random rnd = new Random();
-	    int index = rnd.nextInt(oldContactsList.size()-1);
+	    int index = rnd.nextInt(oldContactsList.size());
 		ContactData contact = oldContactsList.get(index);
 		//actions
-		app.getContactHelper().initDeletionContactByFirstName(contact.getFirstName());
+		app.getContactHelper().initDeletionContactByName(contact.getFirstName(), contact.getLastName());
 		
 		//save new states
 		SortedListOf<ContactData> newContactsList = app.getContactHelper().getContactList();

@@ -24,7 +24,7 @@ public class ContactModifyTests extends TestBase{
 	    int index = rnd.nextInt(oldContactsList.size()-1);
 	    ContactData modifiedContact = oldContactsList.get(index);
 		//actions
-	    app.getContactHelper().modifyContactByFirstName(modifiedContact.getFirstName(), contact, MODIFICATION);
+	    app.getContactHelper().modifyContactByName(modifiedContact.getFirstName(), modifiedContact.getLastName(), contact);
 		
 		
 		//save new states
