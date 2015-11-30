@@ -2,28 +2,66 @@ package com.example.tests;
 
 public class ContactData implements Comparable<ContactData>{
 	
-	public String firstName;
+	private String firstName;
+	private String lastName;
+	private String firstAdress;
+	private String homePhoneNumber;
+	private String mobilePhoneNumber;
+	private String workPhoneNumber;
+	private String firstEmail;
+	private String secondEmail;
+	private String groupName;
+	private String birthDay;
+	private String birthMonth;
+	private String birthYear;
+	private String secondAdress;
+	private String homeNumber;
+	
+	
+	public String getLastName() {
+		return lastName;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
 
-	public String lastName;
-	public String getLastName() {
-		return lastName;
+	public String getFirstAdress() {
+		return firstAdress;
+	}
+	public String getHomePhoneNumber() {
+		return homePhoneNumber;
+	}
+	public String getMobilePhoneNumber() {
+		return mobilePhoneNumber;
+	}
+	public String getWorkPhoneNumber() {
+		return workPhoneNumber;
+	}
+	public String getFirstEmail() {
+		return firstEmail;
+	}
+	public String getSecondEmail() {
+		return secondEmail;
+	}
+	public String getGroupName() {
+		return groupName;
+	}
+	public String getBirthDay() {
+		return birthDay;
+	}
+	public String getBirthMonth() {
+		return birthMonth;
+	}
+	public String getBirthYear() {
+		return birthYear;
+	}
+	public String getSecondAdress() {
+		return secondAdress;
+	}
+	public String getHomeNumber() {
+		return homeNumber;
 	}
 
-	public String firstAdress;
-	public String homePhoneNumber;
-	public String mobilePhoneNumber;
-	public String workPhoneNumber;
-	public String firstEmail;
-	public String secondEmail;
-	public String groupName;
-	public String birthDay;
-	public String birthMonth;
-	public String birthYear;
-	public String secondAdress;
-	public String homeNumber;
 	
 	
 	public ContactData(){

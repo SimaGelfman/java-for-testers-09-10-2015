@@ -17,7 +17,7 @@ public class GroupModifyTests extends TestBase{
 		SortedListOf<GroupData> oldGroupsList = app.getGroupHelper().getGroupList();
 		
 		Random rnd = new Random();
-	    int index = rnd.nextInt(oldGroupsList.size()-1);
+	    int index = rnd.nextInt(oldGroupsList.size());
 	    GroupData selectedGroup = oldGroupsList.get(index); 
 	    //action
 	    app.getGroupHelper().modifyGroupGroupName(selectedGroup.getGroupName(), group);

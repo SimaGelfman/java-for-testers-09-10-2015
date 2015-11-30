@@ -37,8 +37,8 @@ public static boolean MODIFICATION = false;
 			ContactData contact = new ContactData();
 			lname = tr.findElement(By.xpath(".//td[2]")).getText();
 			fname = tr.findElement(By.xpath(".//td[3]")).getText();
-			contact.firstName = fname;
-			contact.lastName = lname;
+			contact.withFirstName(fname);
+			contact.withLastName(lname);
 			cachedContacts.add(contact);
 		}
 		
@@ -94,17 +94,17 @@ public static boolean MODIFICATION = false;
 	//----------------------------------
 	
 	public ContactHelper fillContactForm(ContactData contact, boolean typeForm) {
-		type(By.name("firstname"), contact.firstName);
-		type(By.name("lastname"), contact.lastName);
-		type(By.name("address"), contact.firstAdress);
-		type(By.name("home"), contact.homePhoneNumber);
-		type(By.name("mobile"), contact.mobilePhoneNumber);
-		type(By.name("work"), contact.workPhoneNumber);
-		type(By.name("email"), contact.firstEmail);
-		type(By.name("email2"), contact.secondEmail);
+		type(By.name("firstname"), contact.getFirstName());
+		type(By.name("lastname"), contact.getLastName());
+		type(By.name("address"), contact.getFirstAdress());
+		type(By.name("home"), contact.getHomePhoneNumber());
+		type(By.name("mobile"), contact.getMobilePhoneNumber());
+		type(By.name("work"), contact.getWorkPhoneNumber());
+		type(By.name("email"), contact.getFirstEmail());
+		type(By.name("email2"), contact.getSecondEmail());
 		if(typeForm == CREATION){
-			if(contact.groupName != null){
-				selectByText(By.name("new_group"),contact.groupName);
+			if(contact.getGroupName() != null){
+				selectByText(By.name("new_group"),contact.getGroupName());
 			}
 		}
 		else{
@@ -112,15 +112,15 @@ public static boolean MODIFICATION = false;
 				throw new Error("Group selector exist in contact modification form");
 			}
 		}
-		if(contact.birthDay != null){
-			selectByText(By.name("bday"), contact.birthDay);
+		if(contact.getBirthDay() != null){
+			selectByText(By.name("bday"), contact.getBirthDay());
 		}
-		if(contact.birthMonth != null){
-			selectByText(By.name("bmonth"),contact.birthMonth);
+		if(contact.getBirthMonth() != null){
+			selectByText(By.name("bmonth"),contact.getBirthMonth());
 		}
-		type(By.name("byear"), contact.birthYear);
-		type(By.name("address2"), contact.secondAdress);
-		type(By.name("phone2"), contact.homeNumber);
+		type(By.name("byear"), contact.getBirthYear());
+		type(By.name("address2"), contact.getSecondAdress());
+		type(By.name("phone2"), contact.getHomeNumber());
 		return this;
 	}
 
@@ -155,9 +155,6 @@ public static boolean MODIFICATION = false;
 		return this;
 	}	
 	
-	
-	
-
 	public ContactHelper initContactModification(int index) {
 		openContactEditPage(index);
 		return this;
