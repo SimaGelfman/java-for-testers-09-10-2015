@@ -62,7 +62,7 @@ public class ContactDataGenerator {
 	private static void saveContactsToCvsFile(List<ContactData> contacts, File file) throws IOException {
 		FileWriter writer = new FileWriter(file);
 		for(ContactData contact: contacts){
-			writer.write(contact.getFirstName() + "," + contact.getLastName() + "," + contact.getFirstAdress()
+			writer.write(contact.getFirstName() + "," + contact.getLastName() + "," + contact.getFirstAdress() + "," + contact.getHomePhoneNumber()
 			+ "," + contact.getMobilePhoneNumber() + "," + contact.getWorkPhoneNumber() + "," + contact.getFirstEmail()
 			+ "," + contact.getSecondEmail() + "," + contact.getGroupName() + "," + contact.getBirthDay() + ","
 			+ contact.getBirthMonth() + "," + contact.getBirthYear() + "," + contact.getSecondAdress() + "," 
@@ -96,6 +96,7 @@ public class ContactDataGenerator {
 			contacts.add(contact);
 			line = bufferedReader.readLine();
 		}
+		bufferedReader.close();
 		return contacts;
 	}
 
@@ -110,7 +111,7 @@ public class ContactDataGenerator {
 								.withFirstAdress(generateRandomString())
 								.withFirstEmail("mail" + rnd.nextInt() + "@" + "gmail.com")
 								.withSecondEmail("mail" + rnd.nextInt() + "@" + "yahoo.com")
-								.withGroupName(null)
+								.withGroupName("")
 								.withHomePhoneNumber(Integer.toString(rnd.nextInt(900000000) +100000000))
 								.withMobilePhoneNumber(Integer.toString(rnd.nextInt(900000000) +100000000))
 								.withWorkPhoneNumber(Integer.toString(rnd.nextInt(900000000) +100000000))

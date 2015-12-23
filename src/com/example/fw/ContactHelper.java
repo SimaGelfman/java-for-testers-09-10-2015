@@ -121,6 +121,7 @@ public static boolean MODIFICATION = false;
 		type(By.name("byear"), contact.getBirthYear());
 		type(By.name("address2"), contact.getSecondAdress());
 		type(By.name("phone2"), contact.getHomeNumber());
+		System.out.println(contact);
 		return this;
 	}
 
